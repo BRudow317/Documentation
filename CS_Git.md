@@ -17,8 +17,8 @@ This sheet highlights the most commonly used Git commands with context so you ca
 ## Branches & Collaboration
 - `git branch` — list local branches; `-r` for remotes.
 - `git branch <name>` — create a new branch.
-- `git checkout <branch>` — switch to an existing branch (`git switch` is preferred now).
-- `git checkout -b <name>` — create and switch to a new branch in one step.
+- `git switch <branch>` — switch to an existing branch (`git checkout <branch>` is outdated now).
+- `git switch -c <name>` — create and switch to a new branch in one step. `git checkout -b <name>` also works but outdated.
 - `git merge <branch>` — merge another branch into your current branch.
 - `git rebase <branch>` — replay your commits on top of another branch (use carefully).
 
@@ -33,6 +33,11 @@ This sheet highlights the most commonly used Git commands with context so you ca
 - `git blame <file>` — show who changed each line and when.
 - `git clean -n` — preview removal of untracked files; `git clean -f` to delete them.
 - `git stash push -m "note"` — temporarily save tracked changes; `git stash pop` reapplies them.
+
+## Delete & Cleanup
+- `git branch -d <branch>` — delete a local branch (use `-D` to force).
+- `git remote remove <name>` — delete a remote reference. 
+- `git gc` — clean up unnecessary files and optimize the local repository.
 
 ## Undo & Repair
 - `git reset --soft HEAD~1` — undo the last commit but keep changes staged.

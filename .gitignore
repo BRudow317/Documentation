@@ -1,0 +1,19 @@
+# Documents
+*.log
+**/logs/
+.vscode/
+### Env ###
+.env
+*.env
+.env.*
+**/externalResources/
+.AI/
+**/bin/**
+node_modules/
+assets/
+bin/
+Legacy/
+logs/
+TrashBin/
+sites/
+web/
