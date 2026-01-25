@@ -751,7 +751,8 @@ export default function App() {
   #### Static APIs
 
 
--------------------------------------------------------------------------------------------------------------------
+---
+
 ## Props
 [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
 Props (short for "properties") are a way to pass data from a parent component to a child component in React. They are read-only and should not be modified by the child component. Example usage of props:
@@ -779,6 +780,39 @@ The child component does not need to have defaults or know what props it will re
   - Note only available through `forwardRef` or `canary fragments`
 - `children` (the content between the opening and closing tags of a component)
 - `Render props` (functions that return React elements)
+
+### 3 Ways to Pass Props
+#### Hardcoding a variable inside the component definition
+This is the simplest way to use props, and ensures the props are always the same.
+```jsx
+const MyComponent = () => {
+  let greeting = "Hello, World!"; // you cannot change greeting from outside the component.
+  return (
+    <h1>{greeting}</h1>
+  );
+};
+```
+#### Passing props from a larger scope
+Each time the component is rendered, it uses the value of the variable from the lexical scope.
+```jsx
+let greeting = "Hello, World!";
+const MyComponent = () => (
+    <h1>{greeting}</h1> // you can now change greeting from outside the component.
+  );
+```
+#### Passing props from a parent component
+This is the most flexible way to use props, as the parent component can pass different values each time it renders the child component.
+```jsx
+//props is passed in as a parameter, if you pass nothing react always passes an empty object, so to use default values you have to destructure it with a default empty object.
+const MyComponent = (
+  props = {
+    greeting: "Default Value for Greeting!",
+    ...otherProps
+  } = {} // destructure with default empty object
+  ) => (
+    <h1>{props.greeting}</h1> // you can now change greeting from outside the component.
+  );
+```
 
 #### children
 Not “reserved” in the same way as `key`/`ref`, but it’s special-cased by JSX syntax.

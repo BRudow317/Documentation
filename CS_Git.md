@@ -23,7 +23,7 @@ This sheet highlights the most commonly used Git commands with context so you ca
 - `git branch -M main` - rename the current branch to `main`.
 - `git switch <branch>` - switch to an existing branch (`git checkout <branch>` is outdated now).
 - `git switch -c <name>` - create and switch to a new branch in one step. `git checkout -b <name>` also works but outdated.
-- `git remote add origin https://github.com/BRudow317/mlm_frontend.git` - add a remote repository.
+- `git remote add origin https://github.com/BRudow317/<repo name>.git` - add a remote repository.
 - `git push -u origin main` - push the current branch to the remote repository and set the upstream.
 
 

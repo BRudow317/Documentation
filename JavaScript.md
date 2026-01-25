@@ -86,6 +86,40 @@ The Global Object representing the browser environment.
 - `?.` **Optional Chaining** - Returns undefined instead of causing an error if a reference is nullish.
 
 ### Object Properties
+Object properties are key-value pairs associated with an object.
+```JavaScript
+let obj = {
+  name: "Alice",
+  age: 30,
+  isStudent: false
+};
+console.log(obj.age); // logs 30
+```
+
+### Objects as functions
+```JavaScript
+function person(
+  name = "Hank Hill", // default parameter 
+  age = 50 // defaults to 50
+) {
+  return {
+    name: name,
+    age: age
+  };
+  console.log(person().name); // logs "Hank Hill"
+  console.log(person(name: "Bobby Hill", age: 12).name); // logs "Bobby Hill"
+}
+```
+#### Arrow Notation for Object constructors
+```JavaScript
+
+const createPerson = (name = "Hank Hill", age = 50) => ({ // implicit return
+  name: name,
+  age: age
+});
+console.log(createPerson().name); // logs "Hank Hill"
+console.log(createPerson("Bobby Hill", 12).name); // logs "Bobby Hill"
+```
 
 ## Collections & Iterables
 `...` **Spread Syntax** - Expands an iterable in places where zero or more elements are expected.
@@ -93,8 +127,56 @@ The Global Object representing the browser environment.
 ### [Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 `[]` **Array Initializer/Literal** - Array initializer/literal syntax.
 
+#### Array of Objects aka Object Array
+- [Array Methods Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#methods)
+
+```JavaScript
+let objectArray = [
+  { id: a, name: "Alice" },
+  { id: b, name: "Bob" },
+  { id: c, name: "Charlie" }
+];
+
+// Accessing each object and property
+let person = objectArray.find(obj => obj.id === a); // returns {id: a, name: "Alice"}
+console.log(person.name); // logs "Alice"
+```
+
+#### Array Indexing
+```JavaScript
+let skills = [
+  { label: "JavaScript", value: "Advanced" },
+  { label: "Python", value: "Intermediate" },
+  { label: "Java", value: "Intermediate" }
+];
+
+let indexedSkills = skills.map(
+  (skill, idx) => {
+    return (
+      { key=idx, label=skill.label, value=skill.value }
+    );
+  }
+);
+console.log(indexedSkills.find(skill => skill.key === 1)); // { key: 1, label: "Python", value: "Intermediate" }
+```
+
 ### [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 - [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+
+#### Mapping Arrays & Objects
+Mapping an array to a new array using the `map()` method.
+```JavaScript
+let array = [1, 2, 3, 4, 5];
+let mappedArray = array.map(x => x * 2); // returns [2, 4, 6, 8, 10]
+```
+
+Mapping an object's properties to a new object.
+```JavaScript
+let obj = { a: 1, b: 2, c: 3 };
+let mappedObj = Object.fromEntries(
+  Object.entries(obj).map(([key, value]) => [key, value * 2])
+); // returns { a: 2, b: 4, c: 6 }
+```
 
 ### [Sets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 - [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet)
