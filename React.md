@@ -1,6 +1,6 @@
 # React Documentation
 ## Documentation Links
-#### React & JavaScript
+#### React & JavaScript 
 - [JavaScript Info](https://javascript.info/)
 - [Official React Documentation](https://react.dev/)
 #### HTML

@@ -12,18 +12,13 @@
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [How Python Runs](#how-python-runs)
-  - [Basic Syntax](#basic-syntax)
+  - [Idioms and conventions](#idioms-and-conventions)
   - [Values and Types](#values-and-types)
   - [Collections](#collections)
     - [Lists](#lists)
     - [Tuples](#tuples)
     - [Dictionaries](#dictionaries)
     - [Sets](#sets)
-  - [Control Flow](#control-flow)
-    - [If / Elif / Else](#if--elif--else)
-    - [For Loops](#for-loops)
-    - [While Loops](#while-loops)
-    - [Match (Python 3.10+)](#match-python-310)
   - [Functions](#functions)
     - [Positional and Keyword Arguments](#positional-and-keyword-arguments)
     - [\*args and \*\*kwargs](#args-and-kwargs)
@@ -61,18 +56,92 @@ if __name__ == "__main__":
     main()
 ```
 
-## Basic Syntax
-Python uses indentation to define blocks. There are no curly braces.
+## Idioms and conventions
 ```python
-if True:
-    print("Indented block")
-else:
-    print("Another block")
-```
+# **snake_case** for variables and functions
+my_var = 101
+# **PascalCase** for classes
+class MyClass:
+    pass
+# **type hints** for function signatures
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+# **docstrings** to document functions and classes
+def add(a: int, b: int) -> int:
+    """Return the sum of a and b."""
+    return a + b
+# **list comprehensions** and **generator expressions** for concise code
+squares = [n**2 for n in range(10)]
+# **f-strings** for string interpolation
+name = "Alice"
+greeting = f"Hello, {name}!"
+# **context managers** (**with** statements) for resource management
+with open("file.txt", "r") as f:
+    content = f.read()
+# **logging** instead of print statements for debug output
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.info("This is an info message")
+# **virtual environments** (venv) to manage dependencies
+python -m venv .venv
+source .venv/bin/activate
+# **requirements.txt** or **pyproject.toml** to specify dependencies
+pip install -r requirements.txt
+# **pytest** for testing and test discovery
+import pytest
+def test_add():
+    assert add(2, 3) == 5
+# **black** or **flake8** or **ruff** for code formatting and linting
+pip install ruff
+ruff check .
+# **double underscores** for “private” variables and methods in classes (e.g., __my_variable)
+__my_variable = 42
+def __my_method(self):
+    pass
+# **single underscores** for “protected” variables and methods in classes (e.g., _my_variable)
+_my_variable = 42
+def _my_method(self):
+    pass
+# **all caps** for constants (e.g., MAX_RETRIES)
+MAX_RETRIES = 5
+# using `if __name__ == "__main__":` to allow a Python file to be both imported as a module and executed as a script
+if __name__ == "__main__":
+    main()
+# using a trailing underscore for variable names that would otherwise conflict with Python keywords (e.g., lambda_ instead of lambda)
+lambda_ = lambda x: x * 2
 
-Comments start with `#`:
-```python
-# This is a comment
+# using AWS services in Python Lambda functions with the boto3 library
+import boto3
+s3 = boto3.client("s3")
+s3.put_object(Bucket="my-bucket", Key="data.txt", Body="Hello, S3!")
+
+# if elif else for conditional logic
+score = 85
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+else:
+    grade = "C"
+
+### For Loops
+for name in ["Ada", "Linus"]:
+    print(name)
+
+### While Loops
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+# Switches (match/case)
+def status(code: int) -> str:
+    match code:
+        case 200:
+            return "OK"
+        case 404:
+            return "Not Found"
+        case _:
+            return "Unknown"
 ```
 
 ## Values and Types
@@ -119,43 +188,6 @@ Unordered collections of unique items.
 ```python
 tags = {"python", "api", "docs"}
 tags.add("wiki")
-```
-
-## Control Flow
-### If / Elif / Else
-```python
-if score >= 90:
-    grade = "A"
-elif score >= 80:
-    grade = "B"
-else:
-    grade = "C"
-```
-
-### For Loops
-```python
-for name in ["Ada", "Linus"]:
-    print(name)
-```
-
-### While Loops
-```python
-count = 0
-while count < 3:
-    print(count)
-    count += 1
-```
-
-### Match (Python 3.10+)
-```python
-def status(code: int) -> str:
-    match code:
-        case 200:
-            return "OK"
-        case 404:
-            return "Not Found"
-        case _:
-            return "Unknown"
 ```
 
 ## Functions
